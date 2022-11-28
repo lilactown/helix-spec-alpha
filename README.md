@@ -9,7 +9,7 @@ Using git deps
 
 ```clojure
 town.lilac/helix-spec {:git/url "https://github.com/lilactown/helix-spec-alpha.git"
-                       :git/sha "b78f7eaf9fedeecb648f8c25a233d1b3cff88c2f"}
+                       :git/sha "b9bd6046c4d0585d6a4222dc086383c00fb08612"}
 ```
 
 ## Features
@@ -19,7 +19,7 @@ town.lilac/helix-spec {:git/url "https://github.com/lilactown/helix-spec-alpha.g
 - [x] Explain props
 - [x] Conform props
 - [x] Unform props
-- [ ] Generators for props
+- [x] Generators for props
 - [ ] Error boundary component for catching and explaining component spec errors
 
 ## Usage
