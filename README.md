@@ -52,7 +52,7 @@ print the spec error in a human-readable way.
 
 ## Developing
 
-The library is meant to be used with a browser REPL.
+The library can be developed using a simple browser REPL.
 
 With Emacs, run `M-x cider-jack-in-cljs` and select `shadow-cljs` as the REPL
 type. Once connected, select `browser-repl`.
