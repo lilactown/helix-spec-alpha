@@ -3,4 +3,7 @@
         org.clojure/spec.alpha {:mvn/version "0.3.218"}}
  :aliases {:dev {:extra-paths ["dev"]
                  :extra-deps
-                 {thheller/shadow-cljs {:mvn/version "LATEST"}}}}}
+                 {thheller/shadow-cljs {:mvn/version "LATEST"}}}
+           :test {:extra-paths ["test"]
+                  :extra-deps {olical/cljs-test-runner {:mvn/version "3.8.0"}}
+                  :main-opts ["-m" "cljs-test-runner.main"]}}}
