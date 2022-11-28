@@ -1,0 +1,6 @@
+{:paths ["src"]
+ :deps {lilactown/helix {:mvn/version "0.1.9"}
+        org.clojure/spec.alpha {:mvn/version "0.3.218"}}
+ :aliases {:dev {:extra-paths ["dev"]
+                 :extra-deps
+                 {thheller/shadow-cljs {:mvn/version "LATEST"}}}}}
