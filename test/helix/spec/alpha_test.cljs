@@ -2,6 +2,9 @@
   (:require
    [clojure.test :refer [deftest is testing]]
    [clojure.spec.alpha :as s]
+   [clojure.spec.test.alpha :as stest]
+   clojure.test.check
+   clojure.test.check.properties
    [helix.spec.alpha :as helix.spec]))
 
 (s/def :foo/bar string?)
@@ -12,14 +15,13 @@
   (is (not (s/valid? ::props #js {"foo/bar" 1}))))
 
 (deftest conform
-  (is (= (s/conform ::props #js {"foo/bar" "baz"})
-         #:foo{:bar "baz"}))
-  (is (= (s/conform ::props #js {"foo/bar" 1})
-         :cljs.spec.alpha/invalid)))
+  (is (= #:foo{:bar "baz"}
+         (s/conform ::props #js {"foo/bar" "baz"})))
+  (is (= :cljs.spec.alpha/invalid
+         (s/conform ::props #js {"foo/bar" 1}))))
 
 (deftest explain
-  (is (= (s/explain-str ::props #js {"foo/bar" "baz"})
-         "Success!\n"))
+  (is (= "Success!\n" (s/explain-str ::props #js {"foo/bar" "baz"})))
   (let [o #js {"foo/bar" 1}]
     (is (= `{:cljs.spec.alpha/problems
              ({:path [:foo/bar]
@@ -30,6 +32,21 @@
              :cljs.spec.alpha/spec :helix.spec.alpha-test/props
              :cljs.spec.alpha/value ~o}
            (s/explain-data ::props o)))))
+
+(defn foo
+  [o]
+  (if (object? o)
+    (if-let [bar (aget o "foo/bar")]
+      (or (string? bar) (throw (ex-info "Not a string" {})))
+      true)
+    (throw (ex-info "Not an object" {}))))
+
+(s/fdef foo
+  :args (s/cat :props ::props))
+
+(deftest check
+  (is (= {:total 1, :check-passed 1}
+         (stest/summarize-results (stest/check `foo)))))
 
 (comment
   (clojure.test/run-tests))
