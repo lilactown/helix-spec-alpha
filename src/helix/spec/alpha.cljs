@@ -3,14 +3,10 @@
    [cljs-bean.core :as b]
    [clojure.spec.alpha :as s]
    [helix.core :as helix]
-   [helix.impl.props])
-  (:require-macros
-   [helix.spec.alpha]))
+   [helix.impl.props]))
 
 
-(prn (into {} (b/bean #js {:a 1 :b 2})))
-
-(defn prop-spec-impl
+(defn props
   [spec]
   (reify
     s/Spec
@@ -19,7 +15,6 @@
         (let [m (into {} (helix/extract-cljs-props x))]
           (s/conform* spec m))
         (catch js/Object _e
-          (prn _e)
           ::invalid)))
     (unform* [_ m]
       (let [x (s/unform* spec m)]
@@ -27,7 +22,7 @@
     (explain* [_ path via in x]
       (if-not (object? x)
         [{:path path :pred `object? :val x :via via :in in}]
-        (s/explain* spec path via in x)))
+        (s/explain* spec path via in (into {} (helix/extract-cljs-props x)))))
     (gen* [_ overrides path rmap]
       (throw (ex-info "Not implemented" {:path path :rmap rmap})))
     (with-gen* [_ gfn]

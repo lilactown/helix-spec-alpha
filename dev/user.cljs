@@ -37,11 +37,11 @@
   []
   ($ spec-boundary
      ;; bad props
-     ($ my-comp {::foo 1})))
+     ($ my-comp {::foo 4})))
 
 
 (s/fdef my-comp
-  :args (s/cat :props (h.s/prop-spec-impl (s/keys :req [::foo]))
+  :args (s/cat :props (h.s/props (s/keys :req [::foo]))
                :ref object?))
 
 (stest/instrument `my-comp)
