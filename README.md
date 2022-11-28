@@ -9,7 +9,7 @@ Using git deps
 
 ```clojure
 town.lilac/helix-spec {:git/url "https://github.com/lilactown/helix-spec-alpha.git"
-                       :git/sha "c7109fed1d3dc743cd7e338b6dbadaa9951270f7"}
+                       :git/sha "46873bde22a7b1d25644b98a0aa650268f614d83"}
 ```
 
 ## Features
