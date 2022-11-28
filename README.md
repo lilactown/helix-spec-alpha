@@ -12,6 +12,16 @@ town.lilac/helix-spec {:git/url "https://github.com/lilactown/helix-spec-alpha.g
                        :git/sha "b78f7eaf9fedeecb648f8c25a233d1b3cff88c2f"}
 ```
 
+## Features
+
+- [x] Define specs for props
+- [x] Instrumenting components
+- [x] Explain props
+- [x] Conform props
+- [x] Unform props
+- [ ] Generators for props
+- [ ] Error boundary component for catching and explaining component spec errors
+
 ## Usage
 
 ```clojure
