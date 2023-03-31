@@ -1,3 +1,4 @@
+
 # helix.spec.alpha
 
 [clojure.spec.alpha](https://github.com/clojure/spec.alpha) support for React
@@ -11,6 +12,8 @@ Using git deps
 town.lilac/helix-spec {:git/url "https://github.com/lilactown/helix-spec-alpha.git"
                        :git/sha "46873bde22a7b1d25644b98a0aa650268f614d83"}
 ```
+
+or via maven [![Clojars Project](https://img.shields.io/clojars/v/town.lilac/helix-spec-alpha.svg)](https://clojars.org/town.lilac/helix-spec-alpha)
 
 ## Features
 
